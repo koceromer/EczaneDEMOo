@@ -1,0 +1,56 @@
+﻿@model IEnumerable<EczaneDEMOo.Models.Entities.Satis>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Ilac)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Kullanici)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Musteri)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.satisTarih)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.miktar)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fiyat)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ilac.ad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Kullanici.ad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Musteri.adSoyad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.satisTarih)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.miktar)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fiyat)
+            </td>
+        </tr>
+    }
+
+</table>

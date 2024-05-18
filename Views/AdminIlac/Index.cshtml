@@ -1,0 +1,48 @@
+﻿@model IEnumerable<EczaneDEMOo.Models.Entities.Ilac>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/YoneticiLayout.cshtml";
+}
+
+<h1>Ilac</h1>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.aciklama)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fiyat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.stokMiktar)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.aciklama)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fiyat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.stokMiktar)
+        </td>
+        <td>
+            <a href="@Url.Action("Sil", new { id = item.ilacID })" class="btn btn-danger">Sil</a>
+        </td>
+
+    </tr>
+}
+
+</table>

@@ -1,0 +1,72 @@
+﻿@model IEnumerable<EczaneDEMOo.Models.Entities.Kullanici>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/YoneticiLayout.cshtml";
+}
+
+<h2>Kullanici</h2>
+
+<p>
+    <a href="@Url.Action("Ekle")" class="btn btn-primary">Kayıt Ekle</a>
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.KullaniciRol.ad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.soyad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.kullaniciAd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sifre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.telefon)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ePosta)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.KullaniciRol.ad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.soyad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.kullaniciAd)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.sifre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.telefon)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ePosta)
+            </td>
+            <td>
+                <a href="@Url.Action("Duzenle", new { id = item.kullaniciID })" class="btn btn-primary">Düzenle</a> |
+                <a href="@Url.Action("Sil", new { id = item.kullaniciID })" class="btn btn-danger">Sil</a>
+            </td>
+
+        </tr>
+    }
+
+</table>

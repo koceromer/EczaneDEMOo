@@ -1,0 +1,39 @@
+﻿@model EczaneDEMOo.Models.SatisReceteSatisViewModel
+
+@{
+    ViewBag.Title = "ReceteSatis";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2>Reçete ile Satış</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ReceteNo)
+        @Html.TextBoxFor(model => model.ReceteNo, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.ReceteNo)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.IlacID)
+        @Html.TextBoxFor(model => model.IlacID, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.IlacID)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Adet)
+        @Html.TextBoxFor(model => model.Adet, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Adet)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Fiyat)
+        @Html.TextBoxFor(model => model.Fiyat, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Fiyat)
+    </div>
+
+    <button type="submit" class="btn btn-primary">Satış Yap</button>
+}

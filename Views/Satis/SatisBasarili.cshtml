@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "Satış Başarılı";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2>Satış Başarılı</h2>
+
+<p>Satış işlemi başarılı bir şekilde tamamlandı.</p>
+
+<p>Ne yapmak istersiniz?</p>
+
+<ul class="list-group">
+    <li class="list-group-item">
+        <a href="@Url.Action("Index", "Anasayfa")" class="btn btn-primary">Ana Sayfaya Dön</a>
+    </li>
+    <li class="list-group-item">
+        <a href="@Url.Action("ReceteNoGir", "Satis")" class="btn btn-success">Yeni Satış Yap</a>
+    </li>
+    <li class="list-group-item">
+        <a href="@Url.Action("Index", "Satis")" class="btn btn-info">Satışları Görüntüle</a>
+    </li>
+</ul>
+
+

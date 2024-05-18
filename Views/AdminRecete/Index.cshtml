@@ -1,0 +1,56 @@
+﻿@model IEnumerable<EczaneDEMOo.Models.Entities.Recete>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/YoneticiLayout.cshtml";
+}
+
+<h1>Reçete Listesi</h1>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Doktor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ilac)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Musteri)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.receteNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.miktar)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tarih)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Doktor.ad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ilac.ad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Musteri.adSoyad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.receteNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.miktar)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tarih)
+        </td>
+    </tr>
+}
+
+</table>
