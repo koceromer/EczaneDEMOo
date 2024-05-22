@@ -23,24 +23,28 @@ namespace EczaneDEMOo.Controllers
         // GET: Satis
         public ActionResult Index()
         {
-            var model = _context.Satis.ToList();
+            var model = _context.Satis.ToList();// Tüm satışları getirir ve listeye dönüştürür
             return View(model);
         }
 
         public ActionResult RecetesizSatis()
         {
             #region Ilac Getirme
+            // İlaçları getir ve SelectListItem nesnelerine dönüştür
             List<SelectListItem> selectListItems = _context.Ilac.Select(f => new SelectListItem
             {
                 Value = f.ilacID.ToString(),
                 Text = f.ad
             }).ToList();
 
+            // SelectList oluşturuluyor
+
             SelectList selectList = new SelectList(selectListItems, "Value", "Text");
 
+            // İlaç bilgisi ViewData'ya ekleniyor
             ViewData["Ilac"] = selectList;
             #endregion
-            return View();
+            return View();// RecetesizSatis view'ını döner
         }
 
         // GET: ReceteNo
@@ -52,17 +56,17 @@ namespace EczaneDEMOo.Controllers
 
         // POST: ReceteNo
         [HttpPost]
-        public ActionResult ReceteNoGir(string receteNo)
+        public ActionResult ReceteNoGir(string receteNo)// ReceteNoGir aksiyon metodu, string parametre alır
         {
-            if (!string.IsNullOrEmpty(receteNo))
+            if (!string.IsNullOrEmpty(receteNo))// Reçete numarası boş değilse
             {
                 // ReceteNo'ya ait bilgileri veritabanından alın
                 var recete = _context.Recete.SingleOrDefault(r => r.receteNo == receteNo);
-                if (recete != null)
+                if (recete != null)// Reçete bulunursa
                 {
                     var model = new SatisReceteSatisViewModel
                     {
-                        ReceteNo = recete.receteNo,
+                        ReceteNo = recete.receteNo,// Reçetenin numarası (receteNo) modelin ReceteNo alanına atanıyor
                         ReceteID = recete.receteID,
                         IlacID = recete.ilacID.Value,
                         Adet = recete.miktar.Value,
@@ -85,21 +89,22 @@ namespace EczaneDEMOo.Controllers
         [HttpPost]
         public ActionResult Onayla(SatisReceteSatisViewModel model)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid)// ModelState geçerli mi kontrolü
             {
                 var recete = _context.Recete.Where(r => r.receteID == model.ReceteID).SingleOrDefault();
                 // Satış işlemini veritabanına kaydet
+                // Yeni bir Satis nesnesi oluştur ve modelden gelen verilerle doldur
                 var satis = new Satis
                 {
-                    receteID = model.ReceteID,
+                    receteID = model.ReceteID,// Modelden gelen ReceteID'yi ata
                     ilacID = model.IlacID,
                     miktar = model.Adet,
                     fiyat = model.Fiyat * model.Adet,
                     satisTarih = DateTime.Now
                 };
 
-                _context.Satis.Add(satis);
-                _context.SaveChanges();
+                _context.Satis.Add(satis);// Yeni satış ekle
+                _context.SaveChanges();// Değişiklikleri kaydet
 
                 return RedirectToAction("SatisBasarili");
             }

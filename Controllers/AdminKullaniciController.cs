@@ -22,24 +22,29 @@ namespace EczaneDEMOo.Controllers
         // GET: AdminKullanici
         public ActionResult Index()
         {
+            // silindiMi alanı false olan tüm kullanıcıları getir ve model olarak view'e gönder
             var model = _context.Kullanici.Where(k => k.silindiMi == false).ToList();
             return View(model);
         }
 
-        public ActionResult Ekle()
+        public ActionResult Ekle()// Ekle aksiyon metodu (GET isteği)
         {
             #region Rol Getirme
+            // Kullanıcı rolleri getiriliyor ve SelectListItem nesnelerine dönüştürülüyor
             List<SelectListItem> selectListItems = _context.KullaniciRol.Select(f => new SelectListItem
             {
                 Value = f.kullaniciRolID.ToString(),
                 Text = f.ad
             }).ToList();
 
+            // SelectList oluşturuluyor
             SelectList selectList = new SelectList(selectListItems, "Value", "Text");
 
+            // Rol bilgisi ViewData'ya ekleniyor
             ViewData["Rol"] = selectList;
             #endregion
 
+            // Yeni bir Kullanici nesnesi oluşturuluyor
             var model = new Kullanici();
 
             return View(model);
@@ -48,13 +53,13 @@ namespace EczaneDEMOo.Controllers
         [HttpPost]
         public ActionResult Ekle(Kullanici kullanici)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid)// ModelState geçerli mi kontrolü
             {
                 try
                 {
                     using (var context = new EczaneContext())
                     {
-                        
+                        // Yeni kullanıcı ekle ve değişiklikleri kaydet
                         context.Kullanici.Add(kullanici);
                         context.SaveChanges();
                     }
@@ -85,14 +90,17 @@ namespace EczaneDEMOo.Controllers
                 if (kullanici != null)
                 {
                     #region Rol Getirme
+                    // Kullanıcı rolleri getiriliyor ve SelectListItem nesnelerine dönüştürülüyor
                     List<SelectListItem> selectListItems = _context.KullaniciRol.Select(f => new SelectListItem
                     {
                         Value = f.kullaniciRolID.ToString(),
                         Text = f.ad
                     }).ToList();
 
+                    // SelectList oluşturuluyor
                     SelectList selectList = new SelectList(selectListItems, "Value", "Text");
 
+                    // Rol bilgisi ViewData'ya ekleniyor
                     ViewData["Rol"] = selectList;
                     #endregion
 
@@ -127,9 +135,14 @@ namespace EczaneDEMOo.Controllers
                     TempData["ErrorMessage"] = "Kullanıcı bulunamadı.";
                     return View();
                 }
+                // Kullanıcıyı güncelle
+                // 1. Adım: Veritabanı bağlamında (context) güncellenecek kullanıcıyı takip eden bir giriş (entry) nesnesi oluşturulur.
                 var entry = _context.Entry(kullanici);
+                // 2. Adım: Kullanıcının mevcut değerleri, güncelleme formundan gelen modelin değerleriyle değiştirilir.
                 entry.CurrentValues.SetValues(model);
+                // 3. Adım: Bu girişin (entry) durumunun (state) 'Modified' (değiştirildi) olarak işaretlenir, bu da Entity Framework'e bu nesnenin güncellenmesi gerektiğini belirtir.
                 entry.State = EntityState.Modified;
+                // 4. Adım: Veritabanına değişiklikleri kaydeder. Bu, kullanıcı bilgilerini veritabanında günceller.
                 _context.SaveChanges();
                 TempData["SuccesMessage"] = "Kullanıcı güncellenirken bir hata oluştu: ";
 
@@ -148,8 +161,10 @@ namespace EczaneDEMOo.Controllers
 
         public ActionResult Sil(int id)
         {
+            // Verilen id'ye sahip kullanıcıyı veritabanından getir
             var kullanici = _context.Kullanici.Where(k => k.kullaniciID == id).SingleOrDefault();
 
+            // Kullanıcı bulunduysa, silindiMi alanını true yap
             kullanici.silindiMi = true;
             _context.SaveChanges();
 

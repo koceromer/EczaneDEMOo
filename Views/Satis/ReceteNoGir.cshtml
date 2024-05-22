@@ -5,17 +5,17 @@
 }
 
 @{
-    ViewBag.Title = "Reçete Numarası Gir";
+    ViewBag.Title = "Reçete İle Satış";
 }
 
-<h2>Reçete Numarası Gir</h2>
+<h2>Reçete Numarası Girme </h2>
 
 @using (Html.BeginForm("ReceteNoGir", "Satis", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
     <div class="form-group">
-        @Html.Label("Reçete No")
+        @Html.Label("Reçete Numarası Gir")
         @Html.TextBox("receteNo", null, new { @class = "form-control" })
     </div>
 

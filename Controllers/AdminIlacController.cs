@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace EczaneDEMOo.Controllers
 {
-    [CustomAuthorize(Role = "Yonetici")]
+    [CustomAuthorize(Role = "Yonetici")]// Bu controller'ı sadece 'Yonetici' rolüne sahip kullanıcıların erişebilmesi için yetkilendirir
     public class AdminIlacController : Controller
     {
         EczaneContext _context;
@@ -20,6 +20,7 @@ namespace EczaneDEMOo.Controllers
         // GET: Ilac
         public ActionResult Index()
         {
+            // silindiMi alanı false olan tüm ilaçları getir ve model olarak view'e gönder
             var model = _context.Ilac.Where(i => i.silindiMi == false).ToList();
             return View(model);
         }
@@ -27,6 +28,7 @@ namespace EczaneDEMOo.Controllers
 
         public ActionResult Sil(int id) 
         {
+            // Verilen id'ye sahip ilacı veritabanından getir
             var ilac = _context.Ilac.Where(k => k.ilacID == id).SingleOrDefault();
 
             ilac.silindiMi = true;

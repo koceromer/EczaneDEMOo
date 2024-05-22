@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<EczaneDEMOo.Models.Entities.Satis>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Satışlar Tablosu";
     Layout = "~/Views/Shared/Layout.cshtml";
 }
 
@@ -9,22 +9,22 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Ilac)
+           Ilaç Adı
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Kullanici)
+            Satıcı
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Musteri)
+            Musteri
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.satisTarih)
+            Satış Tarihi
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.miktar)
+            Satış Miktarı
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.fiyat)
+            Satış Fiyatı
         </th>
         <th></th>
     </tr>

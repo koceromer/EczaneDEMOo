@@ -6,11 +6,11 @@ namespace MVC.Controllers
 {
     public class AccountController : Controller
     {
-        EczaneContext _context;
+        EczaneContext _context;// Veritabanı bağlamı için _context adında bir değişken
 
-        public AccountController()
+        public AccountController()// Kurucu metot
         {
-            _context = new EczaneContext();
+            _context = new EczaneContext();// EczaneContext örneği oluşturuluyor
         }
         public ActionResult Index()
         {
@@ -24,12 +24,13 @@ namespace MVC.Controllers
         [HttpPost]
         public ActionResult Login(Kullanici kul)
         {
-            using (var context = new EczaneContext())
+            using (var context = new EczaneContext())// Yeni bir EczaneContext örneği oluştur
             {
+                // Kullanıcı adı ve şifreye göre Kullanici tablosundan bir kullanıcı getir
                 var kullanici = context.Kullanici.Where(k => k.kullaniciAd == kul.kullaniciAd && k.sifre == kul.sifre).SingleOrDefault();
                 if (kullanici != null)
                 {
-                    if (kullanici.rolID == 1)
+                    if (kullanici.rolID == 1)//rolüne göre sayfaya yönlendir
                     {
                         Session["Yonetici"] = kullanici;
                         

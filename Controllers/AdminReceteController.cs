@@ -20,6 +20,7 @@ namespace EczaneDEMOo.Controllers
         // GET: AdminSatis
         public ActionResult Index()
         {
+            // Recete tablosundaki tüm reçeteleri getir ve model olarak view'e gönder
             var model = _context.Recete.ToList();
             return View(model);
         }

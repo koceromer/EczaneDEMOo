@@ -1,31 +1,31 @@
 ﻿@model IEnumerable<EczaneDEMOo.Models.Entities.Recete>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Reçete Listesi";
     Layout = "~/Views/Shared/YoneticiLayout.cshtml";
 }
 
-<h1>Reçete Listesi</h1>
+<h1>Reçetelerin Listesi</h1>
 
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Doktor)
+            Doktor Adı
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Ilac)
+            İlaç Adı
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Musteri)
+            Müşteri Adı
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.receteNo)
+            Reçete Numarası
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.miktar)
+            Miktarı
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.tarih)
+            Tarih
         </th>
         <th></th>
     </tr>

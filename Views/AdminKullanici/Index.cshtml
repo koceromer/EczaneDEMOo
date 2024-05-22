@@ -1,11 +1,11 @@
 ﻿@model IEnumerable<EczaneDEMOo.Models.Entities.Kullanici>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Kullanıcı Görüntüleme Sayfası";
     Layout = "~/Views/Shared/YoneticiLayout.cshtml";
 }
 
-<h2>Kullanici</h2>
+<h2>Kullanıcılar</h2>
 
 <p>
     <a href="@Url.Action("Ekle")" class="btn btn-primary">Kayıt Ekle</a>
@@ -14,25 +14,25 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.KullaniciRol.ad)
+            Rol Adı
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ad)
+            Adı
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.soyad)
+            Soyadı
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.kullaniciAd)
+            Kullanıcı Adı
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.sifre)
+            Şifresi
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.telefon)
+            Telefon Numarası
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ePosta)
+            E Posta Adresi
         </th>
         <th></th>
     </tr>

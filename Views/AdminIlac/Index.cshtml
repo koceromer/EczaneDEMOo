@@ -1,25 +1,25 @@
 ﻿@model IEnumerable<EczaneDEMOo.Models.Entities.Ilac>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "İlaç Tablosu";
     Layout = "~/Views/Shared/YoneticiLayout.cshtml";
 }
 
-<h1>Ilac</h1>
+<h1>İlaçlar</h1>
 
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.ad)
+            İlaç Adı
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.aciklama)
+            İlaç Açıklaması
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.fiyat)
+            İlaç Fiyatı
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.stokMiktar)
+            Stok Miktarı
         </th>
         <th></th>
     </tr>
